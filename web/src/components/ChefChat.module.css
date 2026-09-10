@@ -1,0 +1,483 @@
+.shell {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  height: 100dvh;
+}
+
+/* ---- 侧栏 ---- */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--cream-side);
+  border-right: 1px solid var(--line);
+  padding: 24px 16px 16px;
+  min-height: 0;
+}
+
+.brand {
+  margin: 0 4px 10px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.newChat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 12px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.newChat:hover:not(:disabled) {
+  background: var(--accent-deep);
+}
+
+.sectionLabel {
+  margin: 14px 6px 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.history {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.threadItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.threadItem:hover .menuBtn,
+.menuBtn:focus-visible,
+.menuBtn[aria-expanded="true"] {
+  opacity: 1;
+}
+
+.threadBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menuBtn {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.menuBtn:hover {
+  color: var(--ink);
+  background: rgba(177, 133, 79, 0.15);
+}
+
+.menuPop {
+  position: absolute;
+  top: calc(100% - 4px);
+  right: 0;
+  z-index: 10;
+  min-width: 110px;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(97, 74, 42, 0.14);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  border-radius: 7px;
+  padding: 8px 10px;
+  background: transparent;
+  color: var(--danger);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: rgba(194, 59, 34, 0.08);
+}
+
+.threadBtn:hover {
+  background: rgba(177, 133, 79, 0.12);
+}
+
+.threadActive {
+  background: rgba(177, 133, 79, 0.18);
+}
+
+.threadBtn svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.threadTitle {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.threadTime {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ---- 主区 ---- */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--cream-bg);
+}
+
+.board {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 40px 16px;
+}
+
+.emptyState {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.hatArt {
+  margin-bottom: 8px;
+}
+
+.emptyTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.emptySub {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.thread {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.turnUser,
+.turnChef,
+.turnSystem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.turnUser {
+  align-items: flex-end;
+}
+
+.turnChef {
+  align-items: flex-start;
+}
+
+.turnSystem {
+  align-items: center;
+}
+
+.bubbleUser,
+.bubbleChef {
+  margin: 0;
+  max-width: min(78%, 620px);
+  padding: 11px 15px;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+}
+
+.bubbleUser {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 16px 16px 4px 16px;
+  white-space: pre-wrap;
+}
+
+.bubbleChef {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* 私厨回复按 Markdown 渲染 */
+.bubbleChef p,
+.bubbleChef ul,
+.bubbleChef ol {
+  margin: 0 0 8px;
+}
+
+.bubbleChef > :last-child {
+  margin-bottom: 0;
+}
+
+.bubbleChef ul,
+.bubbleChef ol {
+  padding-left: 20px;
+}
+
+.bubbleChef strong {
+  font-weight: 700;
+}
+
+.bubbleChef hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 24px 0;
+}
+
+.bubbleChef img {
+  display: block;
+  max-width: min(100%, 320px);
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  margin: 6px 0;
+}
+
+.bubbleChef table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 6px 0 10px;
+}
+
+.bubbleChef th,
+.bubbleChef td {
+  border: 1px solid var(--line);
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.bubbleChef th {
+  background: var(--cream-side);
+  font-weight: 600;
+}
+
+.bubbleChef a {
+  color: var(--accent-deep);
+}
+
+.turnSystem p,
+.turnSystem {
+  color: var(--danger);
+  font-size: 13px;
+}
+
+.shot {
+  width: min(200px, 55vw);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 4px;
+}
+
+.pending {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---- 输入区 ---- */
+
+.inputWrap {
+  position: relative;
+  padding: 8px 40px 26px;
+}
+
+.previewRow {
+  padding: 0 2px;
+}
+
+.previewThumb {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+}
+
+.previewThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  display: block;
+}
+
+.previewThumb button {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 17px;
+  height: 17px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* 纵向布局：预览图（可选）→ 文字输入 → 底部操作行 */
+.inputBar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 14px 14px 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(97, 74, 42, 0.09);
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.imageBtn {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: #2e2a24;
+  color: #fff;
+  cursor: pointer;
+}
+
+.imageBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.field {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 14.5px;
+  padding: 0 4px;
+}
+
+.field::placeholder {
+  color: var(--muted);
+}
+
+.sendBtn {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--send-idle);
+  color: #fff;
+  cursor: pointer;
+}
+
+.sendBtn:not(:disabled) {
+  background: var(--accent);
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: var(--accent-deep);
+}
+
+.sendBtn:disabled {
+  cursor: default;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .board {
+    padding: 20px 16px 8px;
+  }
+
+  .inputWrap {
+    padding: 6px 14px 18px;
+  }
+}
