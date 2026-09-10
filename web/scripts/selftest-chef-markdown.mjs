@@ -106,6 +106,24 @@ const tableIngredients = `### 1. 生菜炒鸡蛋｜10分钟
 - 步骤：
   1. 生菜洗净（1分钟）`;
 
+const headingTitles = `### 1 排骨玉米胡萝卜汤｜60分钟
+- **评分**：营养 9/10，简易 7/10
+- **食材**：排骨(500g) 500g、玉米(2根) 约400g、胡萝卜(1根) 约150g
+- **热量**：约 480 kcal
+- **营养**：蛋白 32g / 脂肪 26g
+- **理由**：清甜滋补。
+- **步骤**：
+1. 排骨焯水（5分钟）
+
+## 2. 蒜蓉西兰花｜10分钟
+- **评分**：营养 9/10，简易 9/10
+- **食材**：西兰花(1颗) 约300g、蒜(3瓣) 约15g
+- **热量**：约 150 kcal
+- **营养**：蛋白 6g / 脂肪 8g
+- **理由**：快手清爽。
+- **步骤**：
+1. 西兰花掰小朵（2分钟）`;
+
 const cases = [
   ["broken-bold", brokenBold],
   ["buy-fields", buyFields],
@@ -114,6 +132,7 @@ const cases = [
   ["legacy-fields", legacyFields],
   ["suffix-inventory", suffixInventory],
   ["table-ingredients", tableIngredients],
+  ["heading-titles", headingTitles],
 ];
 
 const bubbles = [];
@@ -124,6 +143,7 @@ for (const [name, src] of cases) {
 
   const plain = html.replace(/<[^>]+>/g, "");
   assert(!plain.includes("*"), `${name}: leftover * in rendered text: ${plain.match(/.{0,30}\*.{0,30}/)?.[0]}`);
+  assert(!plain.includes("#"), `${name}: leftover # in rendered text: ${plain.match(/.{0,30}#.{0,30}/)?.[0]}`);
   assert(!/清单内/.test(plain), `${name}: 清单内 leaked to render`);
   assert(!/清单内/.test(md), `${name}: 清单内 still present`);
   assert(!/需买[：:]\s/.test(md), `${name}: 需买： field still present`);

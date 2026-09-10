@@ -194,7 +194,7 @@ function formatIngredientAmounts(text: string): string {
 function numberRecipeTitles(text: string): string {
   let n = 0;
   const numbered = text.replace(
-    /^(\s*(?:[-*+]\s+)?)(?:\*+)?(?:Top\s*)?(?:\d+\s+)?(?:\d+\.\s+)?([^*\n]+?(?:｜|\|)\s*\d+\s*分钟)\s*\**\s*$/gim,
+    /^(\s*(?:[-*+]\s+)?)(?:#{1,6}\s*)?(?:\*+)?(?:Top\s*)?(?:\d+\s*[.、)]\s*|\d+\s+)?([^*#\n]+?(?:｜|\|)\s*\d+\s*分钟)\s*\**\s*$/gim,
     (_, indent: string, title: string) => {
       n += 1;
       const heading = `${indent}**${n} ${title.trim()}**`;
